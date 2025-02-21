@@ -1,0 +1,28 @@
+name: 构建镜像
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: 签出代码
+        uses: actions/checkout@v4
+
+      - name: 签出代码
+        uses: actions/checkout@v4
+        with:
+          repository: portainer/portainer
+          path: portainer
+
+      - name: 文件目录结构
+        run: tree -a -L 2
+
+      - name: 构建镜像
+        working-directory: portainer
+        run: |
+          make build-image
